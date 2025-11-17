@@ -1,4 +1,7 @@
 # 💡 Impact Team Technical Assessment Spring 2026 💡
+<img width="1388" height="500" align="center" alt="ideaCon" src="https://github.com/user-attachments/assets/a03ac938-050b-4c5c-99af-76a532ec9524" />
+
+
 Congratulations on reaching the next step of the application process! This phase is the most important one in the entire process, as it assesses your ability to create a web app using both tools you're familiar with and ones you probably aren't and will have to pick up as you go. This is one of the most important skills for a web developer to cultivate.
 
 By **Monday, December 1st, 2025 at 11:59pm**, you must fork this repository and submit a PR (pull request) to this repository with both your completed version of the app and a screen recording of you walking me through your app's features.
