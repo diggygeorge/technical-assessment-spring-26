@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useEffect } from "react";
 import {
   Box,
   Typography,
@@ -18,6 +19,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { amber } from "@mui/material/colors";
 
 export default function Kihon() {
+
   return (
     <Box
       sx={{
