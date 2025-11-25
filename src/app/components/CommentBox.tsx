@@ -13,6 +13,7 @@ import {
   Divider,
 } from "@mui/material";
 import { usePathname } from "next/navigation";
+import { useUser } from "../context/UserContext"
 
 interface Comment {
   _id?: string;
@@ -31,6 +32,8 @@ const CommentsSection = () => {
 
   const pathname = usePathname().substring(1);
 
+  const { username, setUsername } = useUser();
+
   // Fetch comments for a given path
   const fetchComments = async () => {
     try {
@@ -47,6 +50,9 @@ const CommentsSection = () => {
   // Add a new comment
   const handleSubmit = async () => {
     if (!name || !comment) return;
+    if (name.trim()) {
+      setUsername(name.trim());
+    }
     setLoading(true);
     try {
       await fetch(
@@ -61,7 +67,6 @@ const CommentsSection = () => {
             path: pathname
           })
         });
-      setName("");
       setComment("");
       fetchComments();
     } catch (error) {
@@ -86,8 +91,10 @@ const CommentsSection = () => {
           label="Name"
           fullWidth
           variant="outlined"
-          value={name}
+          value={username ? username : name}
           onChange={(e) => setName(e.target.value)}
+          disabled={username}
+          required={!username}
           sx={{ mb: 2 }}
         />
         <TextField
