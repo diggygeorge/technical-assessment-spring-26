@@ -70,7 +70,7 @@ const fetchQuestions = async () => {
         console.warn("No questions found for this topic.");
       }
     } else {
-      console.error("Failed to fetch questions:", response.status);
+      console.error("Failed to fetch questions:", response);
     }
   } catch (error) {
     console.error("Failed to load questions:", error);
