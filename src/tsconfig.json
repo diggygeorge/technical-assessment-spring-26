@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/context/UserContext.js"  ],
+, "app/context/UserContext.jsx"  ],
   "exclude": ["node_modules"]
 }
