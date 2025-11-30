@@ -49,14 +49,16 @@ const CommentsSection = () => {
 
   // Add a new comment
   const handleSubmit = async () => {
-    if (!name || !comment) return;
-    if (name.trim()) {
+    if ((!username && !name) || !comment) return;
+
+    if (!username) {
       setUsername(name.trim());
     }
+
     setLoading(true);
     try {
       await fetch(
-        `/api/add_comment?name=${encodeURIComponent(name)}&comment=${encodeURIComponent(comment)}&path=${pathname}`, {
+        `/api/add_comment?name=${encodeURIComponent(username)}&comment=${encodeURIComponent(comment)}&path=${pathname}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

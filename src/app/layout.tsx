@@ -33,7 +33,6 @@ export default function RootLayout({
         <UserProvider>
           <div>
             {children}
-            <CommentBox/>
           </div>
         </UserProvider>
       </body>

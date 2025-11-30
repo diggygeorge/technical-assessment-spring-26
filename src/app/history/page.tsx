@@ -9,6 +9,8 @@ import {
   Paper,
 } from "@mui/material";
 import { amber } from "@mui/material/colors";
+import AnswerBox from "../components/AnswerBox";
+import CommentBox from "../components/CommentBox";
 
 export default function History() {
   const timeline = [
@@ -205,6 +207,10 @@ export default function History() {
           </Typography>
         </Paper>
       </Container>
+      <div className="justify-center p-6">
+        <AnswerBox topic={"history"} />
+        <CommentBox/>
+      </div>
     </Box>
   );
 }

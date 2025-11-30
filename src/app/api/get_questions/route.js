@@ -19,15 +19,15 @@ export async function GET(request) {
     const database = client.db("feedback");
     const collection = database.collection("results");
     
-    const data = await collection.find({ path: path }).toArray();
+    const data = await collection.find({ topic: path }).toArray();
     
-    console.log(`Found ${data.length} comments for path: ${path}`);
+    console.log(`Found ${data.length} questions for path: ${path}`);
     return Response.json(data);
     
   } catch (error) {
     console.error("API Error:", error);
     return Response.json(
-      { error: "Failed to fetch answers: " + error.message },
+      { error: "Failed to fetch questions: " + error.message },
       { status: 500 }
     );
   }

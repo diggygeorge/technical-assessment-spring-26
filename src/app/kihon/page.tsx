@@ -17,6 +17,8 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { amber } from "@mui/material/colors";
+import AnswerBox from "../components/AnswerBox";
+import CommentBox from "../components/CommentBox";
 
 export default function Kihon() {
 
@@ -475,6 +477,10 @@ export default function Kihon() {
           </Typography>
         </Box>
       </Container>
+      <div className="justify-center p-6">
+        <AnswerBox topic={"kihon"} />
+        <CommentBox/>
+      </div>
     </Box>
   );
 }

@@ -2,8 +2,11 @@
 
 import { Box, Typography, Container, Link, Paper } from "@mui/material";
 import { amber } from "@mui/material/colors";
+import AnswerBox from "../components/AnswerBox";
+import CommentBox from "../components/CommentBox";
 
 export default function BeltSystem() {
+  
   const belts = [
     { color: "#FFFFFF", name: "White Belt", meaning: "The beginning — purity, potential, and readiness to learn." },
     { color: "#FACC15", name: "Yellow Belt", meaning: "The first rays of knowledge — awakening of awareness and growth." },
@@ -154,6 +157,10 @@ export default function BeltSystem() {
           </Typography>
         </Paper>
       </Container>
+      <div className="justify-center p-6">
+        <AnswerBox topic={"belts"} />
+        <CommentBox/>
+      </div>
     </Box>
   );
 }

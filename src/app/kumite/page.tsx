@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { amber } from "@mui/material/colors";
+import CommentBox from "../components/CommentBox";
+import AnswerBox from "../components/AnswerBox";
 
 
 export default function Kumite() {
@@ -134,6 +136,10 @@ export default function Kumite() {
           </Typography>
         </Box>
       </Container>
+      <div className="justify-center p-6">
+        <AnswerBox topic={"kumite"} />
+        <CommentBox/>
+      </div>
     </Box>
   );
 }
