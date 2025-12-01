@@ -102,13 +102,13 @@ export default function History() {
   ];
 
   return (
+    <Box sx={{background: "linear-gradient(to bottom right, #f5f5f4, #fef3c7)"}}>
     <Box
       sx={{
         minHeight: "100vh",
-        display: "flex",
+        display: {xs: "block", lg: "flex"},
         alignItems: "center",
-        justifyContent: "center",
-        background: "linear-gradient(to bottom right, #f5f5f4, #fef3c7)",
+        justifyContent: "center", 
         fontFamily: "Roboto, sans-serif",
       }}
     >
@@ -209,8 +209,10 @@ export default function History() {
       </Container>
       <div className="justify-center p-6">
         <AnswerBox topic={"history"} />
-        <CommentBox/>
+
       </div>
+    </Box>
+    <CommentBox/>
     </Box>
   );
 }

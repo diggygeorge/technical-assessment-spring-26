@@ -13,9 +13,9 @@ import { amber } from "@mui/material/colors";
 
 export default function Home() {
   const cards = [
-    { title: "Kihon", desc: "Fundamentals of technique", href: "/kihon" },
+    { title: "Kihon", desc: "Basics", href: "/kihon" },
     { title: "Kata", desc: "Structured movement patterns", href: "/kata" },
-    { title: "Kumite", desc: "Controlled sparring practice", href: "/kumite" },
+    { title: "Kumite", desc: "Sparring", href: "/kumite" },
     { title: "History", desc: "Explore karate’s Okinawan roots", href: "/history" },
     { title: "Belt System", desc: "Ranks and progression", href: "/belts" },
   ];
@@ -126,19 +126,21 @@ export default function Home() {
               "the way of the empty hand,"
             </Box>{" "}
             Karate-Do reflects a balance between physical strength and spiritual
-            harmony — teaching practitioners humility, focus, and respect.
+            harmony - teaching practitioners humility, focus, and respect.
           </Typography>
         </Box>
-
-        <Grid container spacing={2}>
+        <Typography sx={{color: "black", textAlign: "center", pb: 2, fontWeight: "bold"}}>
+          Explore each of the topics below!
+        </Typography>
+        <Grid container spacing={2} sx={{justifyContent: "center"}}>
           {cards.map((card) => (
-            <Grid size={{xs: 6, md: 4}} key={card.title}>
+            <Grid size={{xs: 4, md: 2}} key={card.title}>
               <Link
                 href={card.href}
                 underline="none"
                 sx={{
                   display: "block",
-                  p: 2,
+                  p: 1,
                   bgcolor: amber[50],
                   border: "1px solid",
                   borderColor: amber[300],
@@ -155,16 +157,11 @@ export default function Home() {
                 }}
               >
                 <Typography
+                  className="text-center"
                   variant="subtitle1"
                   sx={{ fontWeight: 600, color: amber[800] }}
                 >
                   {card.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ mt: 0.5, color: "text.secondary" }}
-                >
-                  {card.desc}
                 </Typography>
               </Link>
             </Grid>

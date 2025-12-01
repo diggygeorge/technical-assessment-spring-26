@@ -23,9 +23,11 @@ import CommentBox from "../components/CommentBox";
 export default function Kihon() {
 
   return (
+    <Box sx={{background: "linear-gradient(to bottom right, #f5f5f4, #fef3c7)"}}>
     <Box
       sx={{
         minHeight: "100vh",
+        display: { xs: "block", lg: "flex"},
         background: "linear-gradient(to bottom right, #f5f5f4, #fef3c7)",
         fontFamily: "Roboto, sans-serif",
         py: 6,
@@ -477,10 +479,11 @@ export default function Kihon() {
           </Typography>
         </Box>
       </Container>
-      <div className="justify-center p-6">
+      <Box className="justify-center p-6">
         <AnswerBox topic={"kihon"} />
-        <CommentBox/>
-      </div>
+      </Box>
+    </Box>
+    <CommentBox/>
     </Box>
   );
 }

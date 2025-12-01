@@ -35,19 +35,19 @@ export default function Kumite() {
   ];
 
   return (
+    <Box sx={{background: "linear-gradient(to bottom right, #f5f5f4, #fef3c7)"}}>
     <Box
       sx={{
         minHeight: "100vh",
-        display: "flex",
+        display: { xs: "block", lg: "flex"},
         justifyContent: "center",
         alignItems: "flex-start",
-        background: "linear-gradient(to bottom right, #f5f5f4, #fef3c7)",
         py: 8,
         fontFamily: "Roboto, sans-serif",
       }}
     >
       <Container
-        maxWidth="md"
+        maxWidth="lg"
         sx={{
           bgcolor: "rgba(255,255,255,0.95)",
           boxShadow: 4,
@@ -138,8 +138,9 @@ export default function Kumite() {
       </Container>
       <div className="justify-center p-6">
         <AnswerBox topic={"kumite"} />
-        <CommentBox/>
       </div>
+    </Box>
+    <CommentBox/>
     </Box>
   );
 }

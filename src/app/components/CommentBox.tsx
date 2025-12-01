@@ -20,11 +20,12 @@ interface Comment {
   name: string;
   comment: string;
   path: string;
+  createdAt: string;
 }
 
 
 
-const CommentsSection = () => {
+const CommentBox = () => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
@@ -49,16 +50,23 @@ const CommentsSection = () => {
 
   // Add a new comment
   const handleSubmit = async () => {
-    if ((!username && !name) || !comment) return;
+    if ((!username && !name) || !comment) {
+      alert("Please choose a name and message to comment!")
+      return
+    };
 
-    if (!username) {
+    let user = username;
+    if (!user && name.trim()) {
       setUsername(name.trim());
+      user = name.trim();
     }
+
+    console.log("Posting as:", user);
 
     setLoading(true);
     try {
       await fetch(
-        `/api/add_comment?name=${encodeURIComponent(username)}&comment=${encodeURIComponent(comment)}&path=${pathname}`, {
+        `/api/add_comment?name=${encodeURIComponent(user)}&comment=${encodeURIComponent(comment)}&path=${pathname}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -83,64 +91,143 @@ const CommentsSection = () => {
   }, [pathname]);
 
   return (pathname ? 
-    <Box sx={{ maxWidth: 600, margin: "auto", p: 3 }}>
-      <Typography variant="h5" gutterBottom>
-        Comments
-      </Typography>
+    <Box
+  sx={{
+    maxWidth: 600,
+    mx: "auto",
+    p: 2,
+    background: "#fff",
+    borderRadius: 2,
+    boxShadow: 1,
+  }}
+>
+  <Typography
+    variant="h6"
+    color="black"
+    gutterBottom
+    sx={{ fontWeight: 600, mb: 1 }}
+  >
+    Comments
+  </Typography>
 
-      <Paper sx={{ p: 2, mb: 2 }}>
-        <TextField
-          label="Name"
-          fullWidth
-          variant="outlined"
-          value={username ? username : name}
-          onChange={(e) => setName(e.target.value)}
-          disabled={username}
-          required={!username}
-          sx={{ mb: 2 }}
-        />
-        <TextField
-          label="Comment"
-          fullWidth
-          multiline
-          minRows={3}
-          variant="outlined"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          sx={{ mb: 2 }}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleSubmit}
-          disabled={loading}
+  {/* Input Section */}
+  <Paper sx={{ p: 1.5, mb: 1.5, boxShadow: "none", background: "#fafafa" }}>
+    <TextField
+      label="Name"
+      fullWidth
+      variant="outlined"
+      value={username ? username : name}
+      onChange={(e) => setName(e.target.value)}
+      disabled={username}
+      required={!username}
+      size="small"
+      sx={{ mb: 1 }}
+    />
+    <TextField
+      label="Comment"
+      fullWidth
+      multiline
+      minRows={2}
+      variant="outlined"
+      value={comment}
+      onChange={(e) => setComment(e.target.value)}
+      size="small"
+      sx={{ mb: 1 }}
+    />
+    <Button
+      variant="contained"
+      color="primary"
+      size="small"
+      onClick={handleSubmit}
+      disabled={loading}
+      sx={{
+        px: 2.5,
+        py: 0.6,
+        textTransform: "none",
+      }}
+    >
+      {loading ? "Posting..." : "Post"}
+    </Button>
+  </Paper>
+
+  {/* Comments List */}
+  <Paper
+    sx={{
+      p: 1.5,
+      maxHeight: 300,
+      overflowY: "auto",
+      background: "#fafafa",
+      boxShadow: "none",
+      borderRadius: 1,
+    }}
+  >
+    <List dense>
+      {comments.length === 0 ? (
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          align="center"
+          sx={{ py: 1 }}
         >
-          {loading ? "Posting..." : "Add Comment"}
-        </Button>
-      </Paper>
+          No comments yet.
+        </Typography>
+      ) : (
+        comments.map((item, index) => (
+          <React.Fragment key={item._id || index}>
+            <ListItem
+              alignItems="flex-start"
+              sx={{
+                py: 0.25,
+              }}
+            >
+              <ListItemText
+                primary={
+                  <Typography variant="subtitle2" component="span" sx={{ fontWeight: 600 }}>
+                    {item.name}
+                  </Typography>
+                }
+                secondary={
+                  <>
+                    <Typography
+                      variant="body2"
+                      component="span"
+                      sx={{ color: "text.secondary", fontSize: "0.85rem", display: "block" }}
+                    >
+                      {item.comment}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      component="span"
+                      sx={{
+                        color: "text.disabled",
+                        fontSize: "0.75rem",
+                        display: "block",
+                      }}
+                    >
+                      {item.createdAt
+                        ? new Date(item.createdAt).toLocaleString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                            hour: "numeric",
+                            minute: "2-digit",
+                          })
+                        : ""}
+                    </Typography>
+                  </>
+                }
+              />
 
-      <Paper sx={{ p: 2, maxHeight: 400, overflowY: "auto" }}>
-        <List>
-          {comments.map((item, index) => (
-            <React.Fragment key={item._id || index}>
-              <ListItem alignItems="flex-start">
-                <ListItemText
-                  primary={<strong>{item.name}</strong>}
-                  secondary={item.comment}
-                />
-              </ListItem>
-              <Divider component="li" />
-            </React.Fragment>
-          ))}
-          {comments.length === 0 && (
-            <Typography variant="body2" color="text.secondary" align="center">
-              No comments yet.
-            </Typography>
-          )}
-        </List>
-      </Paper>
-    </Box>
+            </ListItem>
+            <Divider component="li" />
+          </React.Fragment>
+        ))
+      )}
+    </List>
+  </Paper>
+</Box>
+
   : <></>);
 };
 
-export default CommentsSection;
+export default CommentBox;

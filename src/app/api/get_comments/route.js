@@ -19,7 +19,7 @@ export async function GET(request) {
     const database = client.db("feedback");
     const collection = database.collection("comments");
     
-    const data = await collection.find({ path: path }).toArray();
+    const data = await collection.find({ path: path }).sort({createdAt: -1}).toArray();
     
     console.log(`Found ${data.length} comments for path: ${path}`);
     return Response.json(data);

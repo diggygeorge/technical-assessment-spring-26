@@ -78,7 +78,10 @@ const fetchQuestions = async () => {
 };
 
   const handleSubmit = async () => {
-    if ((!username && !name) || !selectedChoice) return;
+    if ((!username && !name) || !selectedChoice) {
+      alert("Please enter your name or choose a response!")
+      return
+    };
 
     if (!username) {
       setUsername(name.trim());

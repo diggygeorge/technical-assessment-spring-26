@@ -76,10 +76,11 @@ export default function Kata() {
   ];
 
   return (
+    <Box sx={{background: "linear-gradient(to bottom right, #f5f5f4, #fef3c7)"}}>
     <Box
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(to bottom right, #f5f5f4, #fef3c7)",
+        display: {xs: "block", lg: "flex"},
         fontFamily: "Roboto, sans-serif",
         py: 6,
       }}
@@ -192,8 +193,9 @@ export default function Kata() {
       </Container>
       <div className="justify-center p-6">
         <AnswerBox topic={"kata"} />
-        <CommentBox/>
       </div>
+    </Box>
+    <CommentBox/>
     </Box>
   );
 }
