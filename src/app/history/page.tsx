@@ -3,7 +3,6 @@
 import "swiper/css";
 import "swiper/css/navigation"
 import "swiper/css/pagination"
-import React from "react";
 import {
   Box,
   Typography,
@@ -194,7 +193,7 @@ export default function History() {
               History of Shotokan Karate
             </Typography>
             <Typography variant="subtitle1" sx={{ color: "text.secondary" }}>
-              Swipe or use arrows to navigate
+              Use arrows to navigate
             </Typography>
           </Box>
         </Box>
