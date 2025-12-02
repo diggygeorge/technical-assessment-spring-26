@@ -74,10 +74,10 @@ export default function Home() {
 
           <Box>
             <Typography variant="h5" sx={{ fontWeight: "bold", color: amber[800] }}>
-              KARATE-DO
+              The House of Shoto
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              The Way of the Empty Hand
+              The Most Popular Form of Karate
             </Typography>
           </Box>
         </Box>
