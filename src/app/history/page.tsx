@@ -1,8 +1,9 @@
 "use client";
 
 import "swiper/css";
-import "swiper/css/navigation"
-import "swiper/css/pagination"
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 import {
   Box,
   Typography,
@@ -33,6 +34,9 @@ export default function History() {
     {
       year: "1868–1902",
       title: "The Origins of Shotokan Karate",
+      image:
+        "https://jkawfamerica.com/wp-content/uploads/2020/07/Master-Gichin-Funakoshi-JKA.jpg",
+      caption: "Gichin Funakoshi",
       content: (
         <>
           <Typography paragraph>
@@ -59,6 +63,9 @@ export default function History() {
     {
       year: "1902–1936",
       title: "Lifting the Ban & Founding of Shotokan",
+      image:
+        "https://www.themartialway.com.au/wp-content/uploads/2015/02/Funakoshi-7-248x300.jpg",
+      caption: "Sensei Funakoshi demonstrating Kata to the public",
       content: (
         <>
           <Typography paragraph>
@@ -131,15 +138,17 @@ export default function History() {
     {
       year: "Today",
       title: "Modern Practice and Legacy",
+      image: "https://ihadojo.com/assets/iha-shuri-castle.jpg",
+      caption: "The globalization of karate today",
       content: (
         <>
-          <Typography paragraph>
+          <Typography>
             Today, Shotokan Karate continues to thrive worldwide. Its techniques
             — the three Ks: <strong>Kihon</strong> (fundamentals),{" "}
             <strong>Kata</strong> (forms), and <strong>Kumite</strong>{" "}
             (sparring) — remain central to its training.
           </Typography>
-          <Typography paragraph>
+          <Typography>
             Students wear the traditional <strong>gi</strong> and progress
             through colored belts, symbolizing growth in skill and spirit. Even
             after achieving black belt, many continue to train, seeking
@@ -209,6 +218,7 @@ export default function History() {
           autoplay={{ delay: 10000, disableOnInteraction: false }}
           loop={true}
           spaceBetween={30}
+          slidesPerView={1}
           style={{ paddingBottom: "40px" }}
         >
           {timeline.map((section, index) => (
@@ -224,9 +234,46 @@ export default function History() {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
-                <Box sx={{ mb: 3 }}>
+                {/* Image (if exists) */}
+                {section.image && (
+                  <Box sx={{ textAlign: "center", mb: 3 }}>
+                    <Box
+                      component="img"
+                      src={section.image}
+                      alt={section.title}
+                      sx={{
+                        width: "100%",
+                        maxWidth: 500,
+                        maxHeight: 300,
+                        objectFit: "cover",
+                        objectPosition: "50% 20%", // focus slightly below top
+                        borderRadius: 2,
+                        boxShadow: 2,
+                        display: "block",
+                        mx: "auto",
+                      }}
+                    />
+                    {section.caption && (
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          display: "block",
+                          mt: 1,
+                          color: "text.secondary",
+                          fontStyle: "italic",
+                        }}
+                      >
+                        {section.caption}
+                      </Typography>
+                    )}
+                  </Box>
+                )}
+
+
+                <Box sx={{ mb: 3, textAlign: "left", width: "100%" }}>
                   <Typography
                     variant="h5"
                     sx={{ fontWeight: "bold", color: amber[700], mb: 1 }}
@@ -250,7 +297,9 @@ export default function History() {
                   )}
                 </Box>
 
-                <Box sx={{ flexGrow: 1 }}>{section.content}</Box>
+                <Box sx={{ flexGrow: 1, textAlign: "left", width: "100%" }}>
+                  {section.content}
+                </Box>
               </Paper>
             </SwiperSlide>
           ))}
@@ -266,6 +315,7 @@ export default function History() {
           >
             <ArrowBackIosIcon fontSize="large" />
           </Box>
+
           <Box
             className="swiper-button-next"
             sx={{

@@ -145,9 +145,44 @@ export default function Kumite() {
           </Typography>
         </Box>
       </Container>
-      <div className="justify-center p-6">
-        <AnswerBox topic={"kumite"} />
-      </div>
+      <Box className="justify-center p-6" sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+        <AnswerBox topic={"kihon"} />
+
+        <Box
+          sx={{
+            border: "2px solid #d97706", // amber-600 tone
+            borderRadius: 3,
+            overflow: "hidden",
+            maxWidth: "700px",
+            width: "100%",
+            boxShadow: 2,
+            bgcolor: "white",
+          }}
+        >
+          <img
+            src="https://img.olympics.com/images/image/private/t_s_pog_staticContent_hero_xl_2x/f_auto/primary/nrei2trsdlt8vqif0fqq"
+            alt="olympic kumite"
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+            }}
+          />
+
+          <Box
+            sx={{
+              p: 1.5,
+              textAlign: "center",
+              bgcolor: "#fffaf0",
+              borderTop: "1px solid #fbbf24",
+            }}
+          >
+            <Typography variant="body2" sx={{ fontStyle: "italic", color: "text.secondary" }}>
+              Kumite in the <strong>2020 Olympics!</strong>
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
     </Box>
     <CommentBox/>
       <Typography sx={{color: "black", textAlign: "center", p: 1, fontWeight: "bold"}}>

@@ -487,9 +487,45 @@ export default function Kihon() {
           </Typography>
         </Box>
       </Container>
-      <Box className="justify-center p-6">
+      <Box className="justify-center p-6" sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
         <AnswerBox topic={"kihon"} />
+
+        <Box
+          sx={{
+            border: "2px solid #d97706", // amber-600 tone
+            borderRadius: 3,
+            overflow: "hidden",
+            maxWidth: "700px",
+            width: "100%",
+            boxShadow: 2,
+            bgcolor: "white",
+          }}
+        >
+          <img
+            src="https://karate.groups.stanford.edu/sites/g/files/sbiybj29341/files/styles/card_1900x950/public/media/image/7f8de2b5c270a90b48803ee8e15dd086_0.jpg.webp?h=f3860d4a&itok=dmR1wttg"
+            alt="Kihon stances"
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+            }}
+          />
+
+          <Box
+            sx={{
+              p: 1.5,
+              textAlign: "center",
+              bgcolor: "#fffaf0",
+              borderTop: "1px solid #fbbf24",
+            }}
+          >
+            <Typography variant="body2" sx={{ fontStyle: "italic", color: "text.secondary" }}>
+              The <strong>many</strong> Kihon stances in Karate.
+            </Typography>
+          </Box>
+        </Box>
       </Box>
+
     </Box>
     <CommentBox/>
       <Typography sx={{color: "black", textAlign: "center", p: 1, fontWeight: "bold"}}>
