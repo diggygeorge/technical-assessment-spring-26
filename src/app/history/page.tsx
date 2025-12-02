@@ -1,18 +1,30 @@
 "use client";
 
 import React from "react";
+import Carousel from 'react-material-ui-carousel';
 import {
   Box,
   Typography,
   Container,
   Link,
   Paper,
+  Grid,
+  IconButton
 } from "@mui/material";
 import { amber } from "@mui/material/colors";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import AnswerBox from "../components/AnswerBox";
 import CommentBox from "../components/CommentBox";
 
 export default function History() {
+  const cards = [
+    { title: "Kihon", desc: "Basics", href: "/kihon" },
+    { title: "Kata", desc: "Structured movement patterns", href: "/kata" },
+    { title: "Kumite", desc: "Sparring", href: "/kumite" },
+    { title: "Belt System", desc: "Ranks and progression", href: "/belts" },
+  ];
+
   const timeline = [
     {
       year: "1868–1902",
@@ -57,8 +69,8 @@ export default function History() {
             <strong>Masatoshi Nakayama</strong> continued his work.
           </Typography>
           <Typography paragraph>
-            Nakayama’s student <strong>Teruyuki Okazaki</strong> later helped spread Karate to the United States and founded the{" "}
-            <strong>International Shotokan Karate Federation (ISKF)</strong>, which continues Funakoshi’s philosophy today.
+            Nakayama's student <strong>Teruyuki Okazaki</strong> later helped spread Karate to the United States and founded the{" "}
+            <strong>International Shotokan Karate Federation (ISKF)</strong>, which continues Funakoshi's philosophy today.
           </Typography>
           <Typography paragraph>
             In 2007, Sensei Okazaki was promoted to the <strong>10th Dan</strong> at age 76 — one of the highest honors in Karate.
@@ -71,14 +83,14 @@ export default function History() {
       title: "The Spirit of Shotokan",
       content: (
         <>
-          <Typography>
-            The philosophy of Shotokan Karate is built on <strong>self-discipline</strong>, <strong>respect</strong>, and <strong>continuous improvement</strong>. Sensei Okazaki taught that Karate is not just about fighting — it’s about{" "}
+          <Typography paragraph>
+            The philosophy of Shotokan Karate is built on <strong>self-discipline</strong>, <strong>respect</strong>, and <strong>continuous improvement</strong>. Sensei Okazaki taught that Karate is not just about fighting — it's about{" "}
             <em>becoming a better person</em>.
           </Typography>
-          <Typography>
-            The <strong>Niju Kun</strong> (“Twenty Precepts”) defines the moral foundation of Karate. Precept 1 says, “Karate begins and ends with courtesy.” Precept 15 reminds practitioners to “Think of your hands and feet as swords.”
+          <Typography paragraph>
+            The <strong>Niju Kun</strong> ("Twenty Precepts") defines the moral foundation of Karate. Precept 1 says, "Karate begins and ends with courtesy." Precept 15 reminds practitioners to "Think of your hands and feet as swords."
           </Typography>
-          <Typography>
+          <Typography paragraph>
             These teachings encourage students to develop integrity, patience, and humility — values that transcend the dojo.
           </Typography>
         </>
@@ -89,11 +101,11 @@ export default function History() {
       title: "Modern Practice and Legacy",
       content: (
         <>
-          <Typography>
+          <Typography paragraph>
             Today, Shotokan Karate continues to thrive worldwide. Its techniques — the three Ks:{" "}
             <strong>Kihon</strong> (fundamentals), <strong>Kata</strong> (forms), and <strong>Kumite</strong> (sparring) — remain central to its training.
           </Typography>
-          <Typography>
+          <Typography paragraph>
             Students wear the traditional <strong>gi</strong> and progress through colored belts, symbolizing growth in skill and spirit. Even after achieving black belt, many continue to train, seeking refinement rather than perfection.
           </Typography>
         </>
@@ -102,29 +114,16 @@ export default function History() {
   ];
 
   return (
-    <Box sx={{background: "linear-gradient(to bottom right, #f5f5f4, #fef3c7)"}}>
-    <Box
-      sx={{
-        minHeight: "100vh",
-        display: {xs: "block", lg: "flex"},
-        alignItems: "center",
-        justifyContent: "center", 
-        fontFamily: "Roboto, sans-serif",
-      }}
-    >
+    <Box sx={{ background: "linear-gradient(to bottom right, #f5f5f4, #fef3c7)", minHeight: "100vh" }}>
       <Container
         maxWidth="lg"
         sx={{
-          bgcolor: "rgba(255,255,255,0.95)",
-          boxShadow: 4,
-          borderRadius: 2,
-          py: 8,
-          px: { xs: 3, sm: 6 },
-          backdropFilter: "blur(6px)",
+          py: 4,
+          px: { xs: 2, sm: 4 },
         }}
       >
         {/* Header */}
-        <Box sx={{ display: "flex", alignItems: "center", mb: 6, gap: 2 }}>
+        <Box sx={{ display: "flex", alignItems: "center", mb: 4, gap: 2 }}>
           <Link
             href="/"
             underline="none"
@@ -152,38 +151,94 @@ export default function History() {
               空手
             </Box>
           </Link>
-
           <Box>
             <Typography variant="h4" sx={{ fontWeight: "bold", color: amber[800] }}>
-              History
+              History of Shotokan Karate
+            </Typography>
+            <Typography variant="subtitle1" sx={{ color: "text.secondary" }}>
+              Swipe or use arrows to navigate
             </Typography>
           </Box>
         </Box>
 
-        {/* Timeline Sections */}
-        <Box sx={{ color: "text.primary", maxWidth: "900px", mx: "auto" }}>
-          {timeline.map((section) => (
-            <Box key={section.title} sx={{ mb: 6 }}>
-              <Typography variant="h5" sx={{ fontWeight: "bold", color: amber[700], mb: 1 }}>
-                {section.title}
-              </Typography>
-              {section.year !== "Philosophy" && (
-                <Typography
-                  variant="subtitle2"
-                  sx={{ textTransform: "uppercase", color: "text.secondary", mb: 1 }}
-                >
-                  {section.year}
+        {/* Carousel Section */}
+        <Box sx={{ mb: 3 }}>
+          <Carousel
+            animation="slide"
+            duration={1000}
+            interval={10000}
+            navButtonsAlwaysVisible
+            navButtonsProps={{
+              style: {
+                backgroundColor: amber[500],
+                borderRadius: "100%",
+                padding: 10,
+              }
+            }}
+            NextIcon={<ArrowForwardIosIcon />}
+            PrevIcon={<ArrowBackIosIcon />}
+            indicatorIconButtonProps={{
+              style: {
+                color: amber[200],
+                margin: 4,
+              }
+            }}
+            activeIndicatorIconButtonProps={{
+              style: {
+                color: amber[700],
+              }
+            }}
+            sx={{
+              minHeight: "500px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            {timeline.map((section, index) => (
+              <Paper key={index} elevation={3}
+              sx={{
+                height: "100%",
+                p: { xs: 3, md: 4 },
+                mx: 10,
+                bgcolor: "white",
+                borderRadius: 2,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <Box sx={{ mb: 3 }}>
+                <Typography variant="h5" sx={{ fontWeight: "bold", color: amber[700], mb: 1 }}>
+                  {section.title}
                 </Typography>
-              )}
-              {section.content}
-            </Box>
-          ))}
+                {section.year !== "Philosophy" && (
+                  <Typography
+                    variant="subtitle2"
+                    sx={{ 
+                      textTransform: "uppercase", 
+                      color: "text.secondary", 
+                      mb: 2,
+                      fontWeight: 600,
+                      letterSpacing: 1
+                    }}
+                  >
+                    {section.year}
+                  </Typography>
+                )}
+              </Box>
+              <Box sx={{ flexGrow: 1 }}>
+                {section.content}
+              </Box>
+            </Paper>
+            ))}
+          </Carousel>
         </Box>
 
+        {/* Quote Section */}
         <Paper
           elevation={0}
           sx={{
-            mt: 8,
             mx: "auto",
             maxWidth: "700px",
             p: 3,
@@ -197,7 +252,7 @@ export default function History() {
             variant="body1"
             sx={{ fontStyle: "italic", color: "text.primary" }}
           >
-            “Karate is not about fighting others. It’s about conquering yourself.”
+            "Karate is not about fighting others. It's about conquering yourself."
           </Typography>
           <Typography
             variant="subtitle2"
@@ -206,13 +261,55 @@ export default function History() {
             – Sensei Gichin Funakoshi
           </Typography>
         </Paper>
-      </Container>
-      <div className="justify-center p-6">
-        <AnswerBox topic={"history"} />
 
-      </div>
-    </Box>
-    <CommentBox/>
+        {/* Answer Box */}
+        <Box className="justify-center p-6">
+          <AnswerBox topic={"history"} />
+        </Box>
+
+        {/* Comment Box */}
+        <CommentBox />
+
+        {/* Other Topics */}
+<Typography sx={{color: "black", textAlign: "center", p: 1, fontWeight: "bold"}}>
+        Check out the other topics!
+      </Typography>
+      <Grid container spacing={2} sx={{p: 2, justifyContent: "center"}}>
+        {cards.map((card) => (
+          <Grid size={{xs: 4, md: 2}} key={card.title}>
+            <Link
+              href={card.href}
+              underline="none"
+              sx={{
+                display: "block",
+                p: 1,
+                bgcolor: amber[50],
+                border: "1px solid",
+                borderColor: amber[300],
+                borderRadius: 2,
+                color: "text.primary",
+                boxShadow: 1,
+                transition: "all 0.2s ease",
+                "&:hover": {
+                  bgcolor: amber[100],
+                  borderColor: amber[600],
+                  boxShadow: 3,
+                  transform: "translateY(-2px)",
+                },
+              }}
+            >
+              <Typography
+                className="text-center"
+                variant="subtitle1"
+                sx={{ fontWeight: 600, color: amber[800] }}
+              >
+                {card.title}
+              </Typography>
+            </Link>
+          </Grid>
+        ))}
+      </Grid>
+      </Container>
     </Box>
   );
 }

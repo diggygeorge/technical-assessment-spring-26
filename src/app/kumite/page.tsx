@@ -9,6 +9,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Grid,
 } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { amber } from "@mui/material/colors";
@@ -17,6 +18,13 @@ import AnswerBox from "../components/AnswerBox";
 
 
 export default function Kumite() {
+    const cards = [
+    { title: "Kihon", desc: "Basics", href: "/kihon" },
+    { title: "Kata", desc: "Structured movement patterns", href: "/kata" },
+    { title: "History", desc: "Explore karate’s Okinawan roots", href: "/history" },
+    { title: "Belt System", desc: "Ranks and progression", href: "/belts" },
+  ];
+
   const sparringTypes = [
     { term: "kihon-gohon-kumite", desc: "Basic five-step sparring" },
     { term: "kihon-sanbon-kumite", desc: "Basic three-step sparring" },
@@ -39,6 +47,7 @@ export default function Kumite() {
     <Box
       sx={{
         minHeight: "100vh",
+        paddingBottom: 2,
         display: { xs: "block", lg: "flex"},
         justifyContent: "center",
         alignItems: "flex-start",
@@ -141,6 +150,44 @@ export default function Kumite() {
       </div>
     </Box>
     <CommentBox/>
+      <Typography sx={{color: "black", textAlign: "center", p: 1, fontWeight: "bold"}}>
+        Check out the other topics!
+      </Typography>
+      <Grid container spacing={2} sx={{p: 2, justifyContent: "center"}}>
+        {cards.map((card) => (
+          <Grid size={{xs: 4, md: 2}} key={card.title}>
+            <Link
+              href={card.href}
+              underline="none"
+              sx={{
+                display: "block",
+                p: 1,
+                bgcolor: amber[50],
+                border: "1px solid",
+                borderColor: amber[300],
+                borderRadius: 2,
+                color: "text.primary",
+                boxShadow: 1,
+                transition: "all 0.2s ease",
+                "&:hover": {
+                  bgcolor: amber[100],
+                  borderColor: amber[600],
+                  boxShadow: 3,
+                  transform: "translateY(-2px)",
+                },
+              }}
+            >
+              <Typography
+                className="text-center"
+                variant="subtitle1"
+                sx={{ fontWeight: 600, color: amber[800] }}
+              >
+                {card.title}
+              </Typography>
+            </Link>
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 }

@@ -1,11 +1,17 @@
 "use client";
 
-import { Box, Typography, Container, Link, Paper } from "@mui/material";
+import { Box, Typography, Container, Link, Paper, Grid } from "@mui/material";
 import { amber } from "@mui/material/colors";
 import AnswerBox from "../components/AnswerBox";
 import CommentBox from "../components/CommentBox";
 
 export default function BeltSystem() {
+    const cards = [
+    { title: "Kihon", desc: "Basics", href: "/kihon" },
+    { title: "Kata", desc: "Structured movement patterns", href: "/kata" },
+    { title: "Kumite", desc: "Sparring", href: "/kumite" },
+    { title: "History", desc: "Explore karate’s Okinawan roots", href: "/history" },
+  ];
   
   const belts = [
     { color: "#FFFFFF", name: "White Belt", meaning: "The beginning — purity, potential, and readiness to learn." },
@@ -23,6 +29,7 @@ export default function BeltSystem() {
     <Box
       sx={{
         minHeight: "100vh",
+        paddingBottom: 2,
         display: {xs: "block", lg: "flex"},
         alignItems: "center",
         justifyContent: "center",
@@ -162,6 +169,44 @@ export default function BeltSystem() {
       </div>
     </Box>
     <CommentBox/>
+      <Typography sx={{color: "black", textAlign: "center", p: 1, fontWeight: "bold"}}>
+        Check out the other topics!
+      </Typography>
+      <Grid container spacing={2} sx={{p: 2, justifyContent: "center"}}>
+        {cards.map((card) => (
+          <Grid size={{xs: 4, md: 2}} key={card.title}>
+            <Link
+              href={card.href}
+              underline="none"
+              sx={{
+                display: "block",
+                p: 1,
+                bgcolor: amber[50],
+                border: "1px solid",
+                borderColor: amber[300],
+                borderRadius: 2,
+                color: "text.primary",
+                boxShadow: 1,
+                transition: "all 0.2s ease",
+                "&:hover": {
+                  bgcolor: amber[100],
+                  borderColor: amber[600],
+                  boxShadow: 3,
+                  transform: "translateY(-2px)",
+                },
+              }}
+            >
+              <Typography
+                className="text-center"
+                variant="subtitle1"
+                sx={{ fontWeight: 600, color: amber[800] }}
+              >
+                {card.title}
+              </Typography>
+            </Link>
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   );
 }
